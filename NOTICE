@@ -1,0 +1,15 @@
+Borno Native
+Copyright 2026 Borno Native contributors
+
+This project is licensed under the Apache License, Version 2.0. See LICENSE.
+
+Third-party materials:
+
+* Avro.TSF/Resources/bn_wordfreq.tsv is derived from wordfreq's Bangla data
+  and is available under CC BY-SA 4.0. See
+  Avro.TSF/Resources/ATTRIBUTION.md for attribution and share-alike terms.
+
+* tools/oracle contains development-only comparison materials and a local
+  pyAvroPhonetic installation. Those materials are not part of the shipped
+  TSF binary and are not relicensed under Apache-2.0. See
+  tools/oracle/README.md for the licensing boundary.

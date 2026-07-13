@@ -1,0 +1,3 @@
+#include "Resource.h"
+
+IDR_BN_WORDFREQ RCDATA "Resources\\bn_wordfreq.tsv"

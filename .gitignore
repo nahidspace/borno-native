@@ -1,0 +1,28 @@
+# Visual Studio/MSBuild output
+**/x64/
+**/Debug/
+**/Release/
+*.suo
+*.user
+*.pdb
+*.ilk
+*.obj
+*.idb
+*.tlog/
+*.lastbuildstate
+*.recipe
+*.res
+*.lib
+*.exp
+*.dll
+*.exe
+
+# Local oracle environment and runtime/debug artifacts
+tools/oracle/.venv/
+*.log
+tools/oracle/ours.tsv
+tools/oracle/theirs.tsv
+tools/oracle/*_out.tsv
+
+# Scratch inputs/outputs
+single_y*

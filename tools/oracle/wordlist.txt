@@ -1,0 +1,120 @@
+# pronouns / common function words
+ami
+tumi
+apni
+se
+tara
+amra
+tomra
+tader
+amar
+tomar
+ei
+oi
+shei
+kemon
+keno
+kothay
+ke
+ki
+kobe
+kivabe
+# common verbs
+kori
+korchi
+korbo
+korlam
+jai
+jabo
+jachi
+khai
+khabo
+khachi
+dekhi
+dekhbo
+likhi
+likhchi
+bolo
+bolchi
+shuni
+shunchi
+ache
+achi
+achen
+hobe
+hoyeche
+hocche
+# greetings / phrases
+kemon acho
+kemon achen
+valo achi
+bhalo achi
+dhonnobad
+shagotom
+subho
+# retroflex vs dental (T/D/N vs t/d/n)
+Taka
+ghTona
+biraT
+pOTol
+Dim
+Dak
+paTh
+math
+lekha
+bata
+data
+nOtun
+gONona
+# sibilants (Sh/sh/s three-way)
+Shomoy
+bishesh
+proshno
+kisher
+mishti
+sikkha
+bishash
+# common conjuncts
+kkhoma
+biggan
+biddaloy
+sthan
+skul
+prosno
+grameen
+class
+# w-sound words (known gap)
+worldcup
+password
+windows
+# numbers via digits
+0
+1
+2
+3
+9
+112
+# punctuation
+.
+..
+...
+# common nouns
+desh
+bangladesh
+manush
+gram
+shohor
+nodi
+gach
+pakhi
+akash
+brishti
+shurjo
+chad
+nokkhotro
+somudro
+পাহাড়
+# sentences
+ami banglay likhchi
+tumi kothay jacho
+ajke abhawa khub bhalo
