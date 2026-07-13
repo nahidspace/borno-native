@@ -1,4 +1,6 @@
 # Visual Studio/MSBuild output
+public/
+dist/
 **/x64/
 **/Debug/
 **/Release/

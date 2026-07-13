@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+    <title>{{ if not .IsHome }}{{ .Title }} — {{ end }}{{ site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+  </head>
+  <body class="{{ if .IsHome }}is-home{{ else }}is-docs{{ end }}">
+    <header class="site-header">
+      <a class="brand" href="{{ "/" | relURL }}" aria-label="Borno Native home"><span class="brand-mark">অ</span><span>Borno <em>Native</em></span></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        {{ range site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>◐</button>
+      </nav>
+    </header>
+    <main>{{ block "main" . }}{{ end }}</main>
+    <footer class="site-footer"><div><span class="footer-dot"></span> Borno Native</div><div>Apache-2.0 · Built for Windows</div><a href="https://github.com/nahidspace/borno-native">View source ↗</a></footer>
+    <script>
+      const root = document.documentElement, saved = localStorage.getItem('borno-theme');
+      if (saved) root.dataset.theme = saved;
+      document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => { const next = root.dataset.theme === 'dark' ? 'light' : 'dark'; root.dataset.theme = next; localStorage.setItem('borno-theme', next); });
+    </script>
+  </body>
+</html>

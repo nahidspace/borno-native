@@ -11,6 +11,8 @@ project does not vendor Avro's implementation or rule data. The independent
 conversion engine is cross-checked against `pyAvroPhonetic` as a development
 oracle; see `tools/oracle/README.md`.
 
+Read the full documentation at [nahidspace.github.io/borno-native](https://nahidspace.github.io/borno-native/).
+
 Status: **V2 of the roadmap** -- a working TSF skeleton with a candidate
 popup. The phonetic engine (`Avro.TSF/Convert.cpp`) is independently written
 (not vendored from OmicronLab -- see `tools/oracle/README.md` for why) but

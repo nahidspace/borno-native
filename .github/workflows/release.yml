@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      APP_VERSION: ${{ github.ref_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build release DLL and test harness
+        shell: pwsh
+        run: |
+          "APP_VERSION=$($env:APP_VERSION.TrimStart('v'))" | Out-File -FilePath $env:GITHUB_ENV -Append
+          $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -find "MSBuild\**\Bin\MSBuild.exe" | Select-Object -First 1
+          & $msbuild .\Avro.TSF\AvroTSF.vcxproj /p:Configuration=Release /p:Platform=x64 /nologo /v:minimal
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $msbuild .\Avro.Tests\AvroTests.vcxproj /p:Configuration=Debug /p:Platform=x64 /nologo /v:minimal
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\Avro.Tests\x64\Debug\AvroTests.exe .\tools\oracle\wordlist.txt .\oracle-check.tsv
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress --yes
+
+      - name: Build installer
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force .\dist | Out-Null
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" .\installer\BornoNative.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Generate WinGet manifest
+        shell: pwsh
+        run: |
+          $installer = Get-Item .\dist\BornoNative-${env:APP_VERSION}-x64.exe
+          $hash = (Get-FileHash $installer -Algorithm SHA256).Hash
+          $version = $env:APP_VERSION
+          $tag = $env:GITHUB_REF_NAME
+          $url = "https://github.com/$env:GITHUB_REPOSITORY/releases/download/$tag/$($installer.Name)"
+          New-Item -ItemType Directory -Force .\dist\winget | Out-Null
+          @"
+          # yaml-language-server: `$schema=https://aka.ms/winget-manifest.defaultLocale.1.6.0.schema.json
+          PackageIdentifier: BornoNative.BornoNative
+          PackageVersion: $version
+          PackageLocale: en-US
+          Publisher: Borno Native contributors
+          PublisherUrl: https://github.com/nahidspace/borno-native
+          PackageName: Borno Native
+          PackageUrl: https://github.com/nahidspace/borno-native
+          License: Apache-2.0
+          ShortDescription: Native Windows TSF Bangla phonetic keyboard.
+          Description: A native Windows Text Services Framework keyboard for Bangla phonetic typing.
+          Moniker: bornonative
+          Tags:
+            - bangla
+            - bengali
+            - phonetic
+            - keyboard
+            - tsf
+          ManifestType: defaultLocale
+          ManifestVersion: 1.6.0
+          "@ | Set-Content .\dist\winget\BornoNative.BornoNative.locale.en-US.yaml -Encoding utf8
+          @"
+          # yaml-language-server: `$schema=https://aka.ms/winget-manifest.installer.1.6.0.schema.json
+          PackageIdentifier: BornoNative.BornoNative
+          PackageVersion: $version
+          InstallerType: inno
+          Scope: machine
+          Installers:
+            - Architecture: x64
+              InstallerUrl: $url
+              InstallerSha256: $hash
+          ManifestType: installer
+          ManifestVersion: 1.6.0
+          "@ | Set-Content .\dist\winget\BornoNative.BornoNative.installer.yaml -Encoding utf8
+          @"
+          # yaml-language-server: `$schema=https://aka.ms/winget-manifest.version.1.6.0.schema.json
+          PackageIdentifier: BornoNative.BornoNative
+          PackageVersion: $version
+          DefaultLocale: en-US
+          ManifestType: version
+          ManifestVersion: 1.6.0
+          "@ | Set-Content .\dist\winget\BornoNative.BornoNative.yaml -Encoding utf8
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/*.exe
+            dist/winget/*.yaml

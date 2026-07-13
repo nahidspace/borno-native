@@ -1,0 +1,23 @@
+baseURL = 'https://nahidspace.github.io/borno-native/'
+languageCode = 'en-us'
+title = 'Borno Native'
+enableRobotsTXT = true
+
+[params]
+  description = 'A native Windows TSF keyboard for Bangla phonetic typing.'
+  repo = 'https://github.com/nahidspace/borno-native'
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    style = 'github'
+
+[menu]
+  [[menu.main]]
+    name = 'Docs'
+    url = '/docs/'
+    weight = 10
+  [[menu.main]]
+    name = 'GitHub'
+    url = 'https://github.com/nahidspace/borno-native'
+    weight = 20
