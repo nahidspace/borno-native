@@ -28,7 +28,7 @@ Registration is machine-wide and requires an elevated PowerShell session:
 .\scripts\register.ps1 Debug
 ```
 
-Open **Settings → Time & language → Language & region → Bangla → Language options**, add **Avro Phonetic**, and select it from the language indicator. Restart the target app after rebuilding so it unloads any older DLL.
+Open **Settings → Time & language → Language & region → Bangla → Language options**, add **Borno Native**, and select it from the language indicator. Restart the target app after rebuilding so it unloads any older DLL.
 
 ## Try it
 

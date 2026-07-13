@@ -1,5 +1,5 @@
 #Requires -Version 5.1
-# Registers AvroTSF.dll as a Windows TSF text service by calling its
+# Registers the Borno Native DLL as a Windows TSF text service by calling its
 # DllRegisterServer export directly (rather than through regsvr32, which
 # swallows the real HRESULT/reason on failure behind a black-box exit code).
 # This writes to HKEY_CLASSES_ROOT (machine-wide COM registration), so it
@@ -65,4 +65,4 @@ Write-Host ""
 Write-Host "Registered. To enable it:"
 Write-Host "  Settings > Time & language > Language & region"
 Write-Host "  Add a language (or open 'Bangla' if already added) > Language options > Add a keyboard"
-Write-Host "  Pick 'Avro Phonetic', then switch to it with Win+Space and type into Notepad."
+Write-Host "  Pick 'Borno Native', then switch to it with Win+Space and type into Notepad."

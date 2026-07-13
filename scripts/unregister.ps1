@@ -55,4 +55,4 @@ if ($hr -ne 0) {
     throw "Unregistration failed with HRESULT $hrHex"
 }
 
-Write-Host "Unregistered. Remove 'Avro Phonetic' from Settings > Time & language if it's still listed there."
+Write-Host "Unregistered. Remove 'Borno Native' from Settings > Time & language if it's still listed there."

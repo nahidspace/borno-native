@@ -10,7 +10,7 @@
 AppId={{C2FD6C0D-7A5D-49AF-B6F0-1E28B2A2D4B5}
 AppName={#AppName}
 AppVersion={#AppVersion}
-AppVerName={#AppName} {#AppVersion} (Avro Phonetic)
+AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppSupportURL={#AppURL}

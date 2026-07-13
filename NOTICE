@@ -5,6 +5,11 @@ This project is licensed under the Apache License, Version 2.0. See LICENSE.
 
 Third-party materials:
 
+* Borno Native is an independent implementation inspired by and compatible
+  with the Avro Phonetic input method by OmicronLab. Avro Phonetic and
+  OmicronLab are credited references, not the product name or source of this
+  project's implementation.
+
 * Avro.TSF/Resources/bn_wordfreq.tsv is derived from wordfreq's Bangla data
   and is available under CC BY-SA 4.0. See
   Avro.TSF/Resources/ATTRIBUTION.md for attribution and share-alike terms.

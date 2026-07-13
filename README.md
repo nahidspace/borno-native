@@ -43,13 +43,13 @@ have their own licensing boundary and are not relicensed under Apache-2.0.
 ```
 
 Then: **Settings > Time & language > Language & region** -> add/open
-**Bangla** -> **Language options** -> **Add a keyboard** -> **Avro Phonetic**.
+**Bangla** -> **Language options** -> **Add a keyboard** -> **Borno Native**.
 
 Windows also registers its own built-in (non-phonetic) Bangla keyboard under
 the same language, so `Win+Space` cycles through *three* stops (English ->
-Windows' default Bangla layout -> Avro Phonetic -> back to English) --
+Windows' default Bangla layout -> Borno Native -> back to English) --
 easy to land on the wrong one. To go straight to ours, click the language
-indicator near the clock and pick **Avro Phonetic** explicitly from the list.
+indicator near the clock and pick **Borno Native** explicitly from the list.
 
 To remove it:
 
