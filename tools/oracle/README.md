@@ -1,13 +1,13 @@
 # Cross-verification oracle (clean-room, not shipped)
 
-This directory is dev tooling only -- nothing here ships in AvroTSF.dll.
+This directory is dev tooling only -- nothing here ships in BornoTSF.dll.
 
 ## What it is
 
 `pyAvroPhonetic` (OmicronLab's official Python port) installed here in
 `.venv/`, patched to run on Python 3 (it's a 2013-era Python 2 codebase --
 see the shim in `.venv/Lib/site-packages/pyavrophonetic/utils/__init__.py`).
-Used as a black-box test oracle to cross-verify `Avro.TSF/Convert.cpp`'s
+Used as a black-box test oracle to cross-verify `Borno.TSF/Convert.cpp`'s
 output against the real thing.
 
 ## Licensing approach
@@ -21,10 +21,10 @@ Given that, this project treats `pyAvroPhonetic` strictly as a **test
 oracle**: we run it, observe its input/output behavior, and derive our own
 independently-written rules/tables (like the conjunct-pair whitelist in
 `Convert.cpp`) from those *observations*. Nothing from `avrodict.json` or
-`avro.py` is copied into `Avro.TSF/`. The word-pair correspondences a
+`avro.py` is copied into `Borno.TSF/`. The word-pair correspondences a
 phonetic scheme produces are facts about the scheme, not copyrightable
 expression -- but the specific GPL-licensed code/data files are not vendored
-here, and `Avro.TSF/` remains independently licensable.
+here, and `Borno.TSF/` remains independently licensable.
 
 If a future need calls for directly vendoring OmicronLab's rule data instead
 of clean-room re-deriving it, that requires deciding to adopt GPL-3.0 for the
@@ -36,7 +36,7 @@ whole project first -- see the discussion this traces back to.
   vs dental consonants, sibilants, conjuncts, digits, punctuation, sentences.
 - `theirs.tsv` -- oracle output for `wordlist.txt` (`word\tresult`).
 - `ours.tsv` -- our `Convert()`'s output for the same list, generated via
-  `../../Avro.Tests/AvroTests.exe wordlist.txt ours.tsv`.
+  `../../Borno.Tests/BornoTests.exe wordlist.txt ours.tsv`.
 - `conjunct_matrix.tsv` / `conjunct_pairs.txt` -- exhaustive test of all
   ~1100 consonant-key pair combinations against the oracle, and the 203
   pairs that came back forming a conjunct. This is the empirical source for
@@ -47,7 +47,7 @@ whole project first -- see the discussion this traces back to.
 ```
 cd tools/oracle
 PYTHONIOENCODING=utf-8 ./.venv/Scripts/python.exe -c "from pyavrophonetic import avro; print(avro.parse('ami'))"
-../../Avro.Tests/x64/Debug/AvroTests.exe wordlist.txt ours.tsv
+../../Borno.Tests/x64/Debug/BornoTests.exe wordlist.txt ours.tsv
 # then diff ours.tsv vs theirs.tsv (see conversation history for the diff script,
 # or just write a quick one -- read both TSVs as UTF-8, compare by word)
 ```

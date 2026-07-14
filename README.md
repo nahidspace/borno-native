@@ -14,7 +14,7 @@ oracle; see `tools/oracle/README.md`.
 Read the full documentation at [nahidspace.github.io/borno-native](https://nahidspace.github.io/borno-native/).
 
 Status: **V2 of the roadmap** -- a working TSF skeleton with a candidate
-popup. The phonetic engine (`Avro.TSF/Convert.cpp`) is independently written
+popup. The phonetic engine (`Borno.TSF/Convert.cpp`) is independently written
 (not vendored from OmicronLab -- see `tools/oracle/README.md` for why) but
 cross-verified against the real pyAvroPhonetic engine as a black-box oracle:
 109 test words/phrases in `tools/oracle/wordlist.txt`; the known remaining
@@ -26,7 +26,7 @@ Original Borno Native source code and documentation are released under the
 Apache License, Version 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 The bundled Bangla word-frequency resource has separate CC BY-SA 4.0 terms;
-see `Avro.TSF/Resources/ATTRIBUTION.md`. Development-only oracle materials
+see `Borno.TSF/Resources/ATTRIBUTION.md`. Development-only oracle materials
 have their own licensing boundary and are not relicensed under Apache-2.0.
 
 ## Build
@@ -69,7 +69,7 @@ To remove it:
   ই/ঈ and উ/ঊ). Navigate with Up/Down, jump to an entry with 1-9, commit with
   Enter/Tab, dismiss with Escape. Self-drawn (not TSF's native candidate UI),
   Uniscribe-shaped so Bangla conjuncts render correctly, light/dark aware.
-- Candidates are ranked by real Bangla word frequency (`Avro.TSF/Dictionary.cpp`,
+- Candidates are ranked by real Bangla word frequency (`Borno.TSF/Dictionary.cpp`,
   25k words embedded as a DLL resource from `wordfreq` -- see
   `Resources/ATTRIBUTION.md` for the CC BY-SA sourcing), not just generation
   order -- e.g. typing `bishesh` now ranks the real word বিশেষ above the
@@ -97,8 +97,8 @@ To remove it:
 ## Layout
 
 ```
-Avro.TSF/       C++/COM TSF text service (internal legacy directory name)
-Avro.Tests/     console harness: runs Convert() over a word list for testing
+Borno.TSF/      C++/COM TSF text service
+Borno.Tests/    console harness: runs Convert() over a word list for testing
 scripts/        build / register / unregister helper scripts
 tools/oracle/   pyAvroPhonetic reference oracle for cross-verification (dev-only,
                 not shipped -- see its README for the licensing approach)

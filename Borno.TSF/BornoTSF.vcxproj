@@ -14,7 +14,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{41A5CCAF-69C7-4DFA-B214-DA574D5C9512}</ProjectGuid>
-    <RootNamespace>AvroTSF</RootNamespace>
+    <RootNamespace>BornoTSF</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
 
@@ -37,7 +37,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
 
   <PropertyGroup>
-    <TargetName>AvroTSF</TargetName>
+    <TargetName>BornoTSF</TargetName>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -51,7 +51,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>AvroTSF.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>BornoTSF.def</ModuleDefinitionFile>
       <AdditionalDependencies>uuid.lib;ole32.lib;oleaut32.lib;advapi32.lib;shlwapi.lib;usp10.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -103,10 +103,10 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AvroTSF.rc" />
+    <ResourceCompile Include="BornoTSF.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AvroTSF.def" />
+    <None Include="BornoTSF.def" />
     <None Include="Resources\bn_wordfreq.tsv" />
     <None Include="Resources\ATTRIBUTION.md" />
   </ItemGroup>

@@ -10,7 +10,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{9C7A1E2B-5B3E-4F1A-9C2D-6E8F0A1B2C3D}</ProjectGuid>
-    <RootNamespace>AvroTests</RootNamespace>
+    <RootNamespace>BornoTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
 
@@ -26,7 +26,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
 
   <PropertyGroup>
-    <TargetName>AvroTests</TargetName>
+    <TargetName>BornoTests</TargetName>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -46,18 +46,18 @@
 
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\Avro.TSF\Convert.cpp">
+    <ClCompile Include="..\Borno.TSF\Convert.cpp">
       <ObjectFileName>$(IntDir)Convert_shared.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\Avro.TSF\Dictionary.cpp">
+    <ClCompile Include="..\Borno.TSF\Dictionary.cpp">
       <ObjectFileName>$(IntDir)Dictionary_shared.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\Avro.TSF\Globals.cpp">
+    <ClCompile Include="..\Borno.TSF\Globals.cpp">
       <ObjectFileName>$(IntDir)Globals_shared.obj</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AvroTests.rc" />
+    <ResourceCompile Include="BornoTests.rc" />
   </ItemGroup>
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

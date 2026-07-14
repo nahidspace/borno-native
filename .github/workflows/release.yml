@@ -22,11 +22,11 @@ jobs:
         run: |
           "APP_VERSION=$($env:APP_VERSION.TrimStart('v'))" | Out-File -FilePath $env:GITHUB_ENV -Append
           $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -find "MSBuild\**\Bin\MSBuild.exe" | Select-Object -First 1
-          & $msbuild .\Avro.TSF\AvroTSF.vcxproj /p:Configuration=Release /p:Platform=x64 /nologo /v:minimal
+          & $msbuild .\Borno.TSF\BornoTSF.vcxproj /p:Configuration=Release /p:Platform=x64 /nologo /v:minimal
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & $msbuild .\Avro.Tests\AvroTests.vcxproj /p:Configuration=Debug /p:Platform=x64 /nologo /v:minimal
+          & $msbuild .\Borno.Tests\BornoTests.vcxproj /p:Configuration=Debug /p:Platform=x64 /nologo /v:minimal
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & .\Avro.Tests\x64\Debug\AvroTests.exe .\tools\oracle\wordlist.txt .\oracle-check.tsv
+          & .\Borno.Tests\x64\Debug\BornoTests.exe .\tools\oracle\wordlist.txt .\oracle-check.tsv
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Install Inno Setup

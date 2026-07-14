@@ -26,20 +26,20 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 LicenseFile=..\LICENSE
-UninstallDisplayIcon={app}\AvroTSF.dll
+UninstallDisplayIcon={app}\BornoTSF.dll
 ChangesEnvironment=no
 
 [Files]
-Source: "..\Avro.TSF\x64\Release\AvroTSF.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace
+Source: "..\Borno.TSF\x64\Release\BornoTSF.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: isreadme
 Source: "..\NOTICE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Avro.TSF\Resources\ATTRIBUTION.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Borno.TSF\Resources\ATTRIBUTION.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
-Filename: "{sys}\regsvr32.exe"; Parameters: "/s \"{app}\AvroTSF.dll\""; StatusMsg: "Registering the Borno Native keyboard..."; Flags: runhidden waituntilterminated
+Filename: "{sys}\regsvr32.exe"; Parameters: "/s \"{app}\BornoTSF.dll\""; StatusMsg: "Registering the Borno Native keyboard..."; Flags: runhidden waituntilterminated
 
 [UninstallRun]
-Filename: "{sys}\regsvr32.exe"; Parameters: "/s /u \"{app}\AvroTSF.dll\""; RunOnceId: "UnregisterBornoNative"; Flags: runhidden waituntilterminated
+Filename: "{sys}\regsvr32.exe"; Parameters: "/s /u \"{app}\BornoTSF.dll\""; RunOnceId: "UnregisterBornoNative"; Flags: runhidden waituntilterminated
 
 [UninstallDelete]
-Type: files; Name: "{app}\AvroTSF.dll"
+Type: files; Name: "{app}\BornoTSF.dll"

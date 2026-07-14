@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <unordered_map>
 
-namespace AvroDictionary {
+namespace BornoDictionary {
 
 namespace {
 
@@ -58,4 +58,4 @@ float Lookup(const std::wstring& word) {
     return it != map.end() ? it->second : -1.0f;
 }
 
-} // namespace AvroDictionary
+} // namespace BornoDictionary

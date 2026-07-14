@@ -1,11 +1,11 @@
 #Requires -Version 5.1
-# Unregisters AvroTSF.dll by calling its DllUnregisterServer export directly.
+# Unregisters BornoTSF.dll by calling its DllUnregisterServer export directly.
 # Needs an elevated console, same as register.ps1.
 # Usage: .\unregister.ps1 [Debug|Release]
 $ErrorActionPreference = "Stop"
 
 $config = if ($args.Count -gt 0) { $args[0] } else { "Debug" }
-$dllPath = Join-Path $PSScriptRoot "..\Avro.TSF\x64\$config\AvroTSF.dll"
+$dllPath = Join-Path $PSScriptRoot "..\Borno.TSF\x64\$config\BornoTSF.dll"
 if (-not (Test-Path $dllPath)) { throw "Not found: $dllPath" }
 $dll = (Resolve-Path $dllPath).Path
 
@@ -19,7 +19,7 @@ if (-not $isAdmin) {
 Add-Type -TypeDefinition @"
 using System;
 using System.Runtime.InteropServices;
-public static class AvroNative {
+public static class BornoNative {
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     public static extern IntPtr LoadLibrary(string path);
     [DllImport("kernel32.dll")]
@@ -32,18 +32,18 @@ public delegate int VoidToHResult();
 "@
 
 function Invoke-DllExport([string]$dllPath, [string]$exportName) {
-    $hModule = [AvroNative]::LoadLibrary($dllPath)
+    $hModule = [BornoNative]::LoadLibrary($dllPath)
     if ($hModule -eq [IntPtr]::Zero) {
         $err = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
         throw "LoadLibrary('$dllPath') failed, Win32 error $err"
     }
     try {
-        $procAddr = [AvroNative]::GetProcAddress($hModule, $exportName)
+        $procAddr = [BornoNative]::GetProcAddress($hModule, $exportName)
         if ($procAddr -eq [IntPtr]::Zero) { throw "GetProcAddress('$exportName') failed" }
         $delegate = [Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer($procAddr, [VoidToHResult])
         return $delegate.Invoke()
     } finally {
-        [AvroNative]::FreeLibrary($hModule) | Out-Null
+        [BornoNative]::FreeLibrary($hModule) | Out-Null
     }
 }
 

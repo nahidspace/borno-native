@@ -8,7 +8,7 @@
 
 namespace {
 
-constexpr wchar_t kClassName[] = L"AvroTSFCandidateWindow";
+constexpr wchar_t kClassName[] = L"BornoTSFCandidateWindow";
 constexpr int kPaddingX = 10;
 constexpr int kPaddingY = 6;
 constexpr int kIndexColumnWidth = 22;
@@ -96,7 +96,7 @@ void CCandidateWindow::_EnsureWindow() {
         DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
         CLEARTYPE_QUALITY, DEFAULT_PITCH | FF_DONTCARE, L"Segoe UI");
 
-    AvroDebug::Log(L"CandidateWindow _EnsureWindow: hwnd=0x%p lastError=%lu", m_hwnd, GetLastError());
+    BornoDebug::Log(L"CandidateWindow _EnsureWindow: hwnd=0x%p lastError=%lu", m_hwnd, GetLastError());
 }
 
 void CCandidateWindow::_Layout(const RECT &caretRect) {
@@ -234,7 +234,7 @@ void CCandidateWindow::Show(const RECT &caretRect, const std::vector<std::wstrin
 
     RECT wr = {};
     GetWindowRect(m_hwnd, &wr);
-    AvroDebug::Log(L"Show: caretRect=(%d,%d,%d,%d) windowRect=(%d,%d,%d,%d) visible=%d",
+    BornoDebug::Log(L"Show: caretRect=(%d,%d,%d,%d) windowRect=(%d,%d,%d,%d) visible=%d",
                     caretRect.left, caretRect.top, caretRect.right, caretRect.bottom,
                     wr.left, wr.top, wr.right, wr.bottom, IsWindowVisible(m_hwnd));
 }

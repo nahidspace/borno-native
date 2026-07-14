@@ -1,4 +1,4 @@
-LIBRARY AvroTSF
+LIBRARY BornoTSF
 
 EXPORTS
     DllGetClassObject   PRIVATE

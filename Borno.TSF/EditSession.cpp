@@ -62,12 +62,12 @@ STDMETHODIMP CEditSession::DoEditSession(TfEditCookie ec) {
         if (SUCCEEDED(hrView)) {
             BOOL fClipped = FALSE;
             HRESULT hrExt = pView->GetTextExt(ec, pRange, m_pOutCaretRect, &fClipped);
-            AvroDebug::Log(L"GetTextExt hr=0x%08X rect=(%d,%d,%d,%d) clipped=%d",
+            BornoDebug::Log(L"GetTextExt hr=0x%08X rect=(%d,%d,%d,%d) clipped=%d",
                             (unsigned)hrExt, m_pOutCaretRect->left, m_pOutCaretRect->top,
                             m_pOutCaretRect->right, m_pOutCaretRect->bottom, fClipped);
             pView->Release();
         } else {
-            AvroDebug::Log(L"GetActiveView FAILED hr=0x%08X", (unsigned)hrView);
+            BornoDebug::Log(L"GetActiveView FAILED hr=0x%08X", (unsigned)hrView);
         }
     }
 

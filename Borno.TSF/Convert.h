@@ -2,10 +2,8 @@
 #include <string>
 #include <vector>
 
-// Avro.Core placeholder. This is a small demonstration rule set for the TSF
-// skeleton (V2 of the roadmap), not the production Avro Phonetic ruleset.
-// TODO: replace with the ported OmicronLab Avro Phonetic rules + golden tests.
-namespace AvroCore {
+// Borno.Core phonetic rule set for the native TSF service.
+namespace BornoCore {
     std::wstring Convert(const std::wstring& input);
 
     // Primary conversion plus spelling-variant alternates, primary first.

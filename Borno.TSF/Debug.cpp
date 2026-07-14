@@ -4,12 +4,12 @@
 #include <cstdarg>
 #include <string>
 
-namespace AvroDebug {
+namespace BornoDebug {
 
 void Log(const wchar_t* fmt, ...) {
     wchar_t tempPath[MAX_PATH];
     GetTempPathW(MAX_PATH, tempPath);
-    std::wstring logPath = std::wstring(tempPath) + L"AvroTSF-debug.log";
+    std::wstring logPath = std::wstring(tempPath) + L"BornoTSF-debug.log";
 
     FILE* f = nullptr;
     if (_wfopen_s(&f, logPath.c_str(), L"a, ccs=UTF-8") != 0 || !f) return;
@@ -27,4 +27,4 @@ void Log(const wchar_t* fmt, ...) {
     fclose(f);
 }
 
-} // namespace AvroDebug
+} // namespace BornoDebug

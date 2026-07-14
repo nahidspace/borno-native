@@ -96,7 +96,7 @@ bool IsModifierKey(WPARAM wParam) {
 
 void CTextService::_ShowSelectedCandidate(ITfContext *pic) {
     const std::wstring &text = m_candidates[m_selectedCandidate];
-    AvroDebug::Log(L"_ShowSelectedCandidate buffer='%s' candidateCount=%zu chosen='%s'",
+    BornoDebug::Log(L"_ShowSelectedCandidate buffer='%s' candidateCount=%zu chosen='%s'",
                     m_rawBuffer.c_str(), m_candidates.size(), text.c_str());
 
     RECT caretRect = {};
@@ -104,10 +104,10 @@ void CTextService::_ShowSelectedCandidate(ITfContext *pic) {
     m_insertedLength = (LONG)text.length();
 
     if (m_candidates.size() > 1) {
-        AvroDebug::Log(L"Calling CandidateWindow.Show with %zu candidates", m_candidates.size());
+        BornoDebug::Log(L"Calling CandidateWindow.Show with %zu candidates", m_candidates.size());
         m_candidateWindow.Show(caretRect, m_candidates, m_selectedCandidate);
     } else {
-        AvroDebug::Log(L"Only 1 candidate, hiding window");
+        BornoDebug::Log(L"Only 1 candidate, hiding window");
         m_candidateWindow.Hide();
     }
 }
@@ -122,7 +122,7 @@ void CTextService::_ReplaceComposition(ITfContext *pic, const std::wstring &text
     HRESULT hrRequest = pic->RequestEditSession(
         m_tfClientId, pSession, TF_ES_SYNC | TF_ES_READWRITE, &hrSession);
     pSession->Release();
-    AvroDebug::Log(L"ReplaceComposition hrRequest=0x%08X hrSession=0x%08X caretRect=(%d,%d,%d,%d)",
+    BornoDebug::Log(L"ReplaceComposition hrRequest=0x%08X hrSession=0x%08X caretRect=(%d,%d,%d,%d)",
                    (unsigned)hrRequest, (unsigned)hrSession,
                    caretRect.left, caretRect.top, caretRect.right, caretRect.bottom);
 
@@ -247,7 +247,7 @@ STDMETHODIMP CTextService::OnKeyDown(ITfContext *pic, WPARAM wParam, LPARAM lPar
         return S_OK;
     }
 
-    m_candidates = AvroCore::GetCandidates(m_rawBuffer);
+    m_candidates = BornoCore::GetCandidates(m_rawBuffer);
     m_selectedCandidate = 0;
     _ShowSelectedCandidate(pic);
     return S_OK;

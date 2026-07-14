@@ -3,14 +3,14 @@
 Borno Native's original source code and documentation are licensed under the
 Apache License, Version 2.0. The bundled Bangla word-frequency resource has
 separate CC BY-SA 4.0 terms; read `NOTICE` and
-`Avro.TSF/Resources/ATTRIBUTION.md` before changing or redistributing it.
+`Borno.TSF/Resources/ATTRIBUTION.md` before changing or redistributing it.
 
 ## Development setup
 
 - Use Visual Studio 2022 or Build Tools with the v143 C++ toolset and the
   Windows 10 SDK.
 - Build with `scripts/build.ps1 Debug` or `scripts/build.ps1 Release`.
-- Build the console regression harness from `Avro.Tests/AvroTests.vcxproj`.
+- Build the console regression harness from `Borno.Tests/BornoTests.vcxproj`.
 - Run the harness against `tools/oracle/wordlist.txt` and compare its UTF-8
   output with `tools/oracle/ours.tsv`.
 - Test TSF changes in a fresh Notepad process. Registration is machine-wide
@@ -19,7 +19,7 @@ separate CC BY-SA 4.0 terms; read `NOTICE` and
 ## Change guidelines
 
 - Keep the phonetic engine independently implemented; do not copy GPL code or
-  data from the oracle into `Avro.TSF`.
+  data from the oracle into `Borno.TSF`.
 - Add a focused regression input whenever a conversion rule changes.
 - Preserve UTF-8 source/resource encoding and use `/utf-8` when compiling.
 - Keep TSF edit sessions synchronous, bounded to the active composition, and

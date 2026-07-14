@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 
-namespace AvroRegister {
+namespace BornoRegister {
     HRESULT RegisterServer();
     HRESULT UnregisterServer();
 }

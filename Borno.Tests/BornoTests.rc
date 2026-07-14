@@ -1,0 +1,3 @@
+#include "../Borno.TSF/Resource.h"
+
+IDR_BN_WORDFREQ RCDATA "..\\Borno.TSF\\Resources\\bn_wordfreq.tsv"

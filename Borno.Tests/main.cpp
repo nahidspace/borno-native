@@ -1,5 +1,5 @@
 // Console test harness: reads one phonetic word per line from argv[1],
-// runs it through AvroCore::Convert, writes "word\tresult" lines (UTF-8) to
+// runs it through BornoCore::Convert, writes "word\tresult" lines (UTF-8) to
 // argv[2]. Used to diff our engine's output against the pyAvroPhonetic
 // reference oracle for cross-verification -- not shipped with the product.
 //
@@ -8,7 +8,7 @@
 // facet was observed inserting a spurious mid-stream BOM before non-ASCII
 // segments in this MSVC STL, corrupting the very output this tool exists to
 // produce accurately.
-#include "../Avro.TSF/Convert.h"
+#include "../Borno.TSF/Convert.h"
 #include <windows.h>
 #include <fstream>
 #include <string>
@@ -42,7 +42,7 @@ std::wstring TrimCr(std::wstring s) {
 
 int wmain(int argc, wchar_t** argv) {
     if (argc < 3) {
-        std::wcerr << L"usage: AvroTests.exe <input-words.txt> <output.tsv>\n";
+        std::wcerr << L"usage: BornoTests.exe <input-words.txt> <output.tsv>\n";
         return 1;
     }
 
@@ -53,10 +53,10 @@ int wmain(int argc, wchar_t** argv) {
     while (std::getline(in, byteLine)) {
         std::wstring line = TrimCr(Utf8ToWide(byteLine));
         if (line.empty() || line[0] == L'#') continue;
-        std::wstring converted = AvroCore::Convert(line);
+        std::wstring converted = BornoCore::Convert(line);
         out << WideToUtf8(line) << "\t" << WideToUtf8(converted);
 
-        auto candidates = AvroCore::GetCandidates(line);
+        auto candidates = BornoCore::GetCandidates(line);
         for (const auto& c : candidates) out << "\t" << WideToUtf8(c);
         out << "\n";
     }

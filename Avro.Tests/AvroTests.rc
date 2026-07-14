@@ -1,3 +1,0 @@
-#include "../Avro.TSF/Resource.h"
-
-IDR_BN_WORDFREQ RCDATA "..\\Avro.TSF\\Resources\\bn_wordfreq.tsv"

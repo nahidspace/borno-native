@@ -19,13 +19,13 @@ HRESULT RegisterClsid() {
     WCHAR modulePath[MAX_PATH] = {};
     GetModuleFileNameW(g_hInst, modulePath, MAX_PATH);
 
-    std::wstring keyPath = L"CLSID\\" + GuidToString(CLSID_AvroTextService);
+    std::wstring keyPath = L"CLSID\\" + GuidToString(CLSID_BornoTextService);
 
     HKEY hKey = nullptr;
     if (RegCreateKeyExW(HKEY_CLASSES_ROOT, keyPath.c_str(), 0, nullptr, 0, KEY_WRITE, nullptr, &hKey, nullptr) != ERROR_SUCCESS)
         return E_FAIL;
-    RegSetValueExW(hKey, nullptr, 0, REG_SZ, (const BYTE*)AVRO_TEXTSERVICE_DESC,
-                   (DWORD)(wcslen(AVRO_TEXTSERVICE_DESC) + 1) * sizeof(WCHAR));
+    RegSetValueExW(hKey, nullptr, 0, REG_SZ, (const BYTE*)BORNO_TEXTSERVICE_DESC,
+                   (DWORD)(wcslen(BORNO_TEXTSERVICE_DESC) + 1) * sizeof(WCHAR));
     RegCloseKey(hKey);
 
     std::wstring inprocPath = keyPath + L"\\InprocServer32";
@@ -40,13 +40,13 @@ HRESULT RegisterClsid() {
 }
 
 void UnregisterClsid() {
-    std::wstring keyPath = L"CLSID\\" + GuidToString(CLSID_AvroTextService);
+    std::wstring keyPath = L"CLSID\\" + GuidToString(CLSID_BornoTextService);
     SHDeleteKeyW(HKEY_CLASSES_ROOT, keyPath.c_str());
 }
 
 } // namespace
 
-namespace AvroRegister {
+namespace BornoRegister {
 
 HRESULT RegisterServer() {
     HRESULT hr = RegisterClsid();
@@ -60,9 +60,9 @@ HRESULT RegisterServer() {
     ITfInputProcessorProfiles *pProfiles = nullptr;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_InputProcessorProfiles, nullptr, CLSCTX_INPROC_SERVER,
                                     IID_ITfInputProcessorProfiles, (void**)&pProfiles))) {
-        pProfiles->Register(CLSID_AvroTextService);
-        pProfiles->AddLanguageProfile(CLSID_AvroTextService, AVRO_LANGID, GUID_Profile_AvroPhonetic,
-                                       AVRO_TEXTSERVICE_DESC, (ULONG)wcslen(AVRO_TEXTSERVICE_DESC),
+        pProfiles->Register(CLSID_BornoTextService);
+        pProfiles->AddLanguageProfile(CLSID_BornoTextService, BORNO_LANGID, GUID_Profile_BornoNative,
+                                       BORNO_TEXTSERVICE_DESC, (ULONG)wcslen(BORNO_TEXTSERVICE_DESC),
                                        modulePath, (ULONG)wcslen(modulePath), 0);
         pProfiles->Release();
     }
@@ -70,7 +70,7 @@ HRESULT RegisterServer() {
     ITfCategoryMgr *pCategoryMgr = nullptr;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_CategoryMgr, nullptr, CLSCTX_INPROC_SERVER,
                                     IID_ITfCategoryMgr, (void**)&pCategoryMgr))) {
-        pCategoryMgr->RegisterCategory(CLSID_AvroTextService, GUID_TFCAT_TIP_KEYBOARD, CLSID_AvroTextService);
+        pCategoryMgr->RegisterCategory(CLSID_BornoTextService, GUID_TFCAT_TIP_KEYBOARD, CLSID_BornoTextService);
         pCategoryMgr->Release();
     }
 
@@ -84,15 +84,15 @@ HRESULT UnregisterServer() {
     ITfCategoryMgr *pCategoryMgr = nullptr;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_CategoryMgr, nullptr, CLSCTX_INPROC_SERVER,
                                     IID_ITfCategoryMgr, (void**)&pCategoryMgr))) {
-        pCategoryMgr->UnregisterCategory(CLSID_AvroTextService, GUID_TFCAT_TIP_KEYBOARD, CLSID_AvroTextService);
+        pCategoryMgr->UnregisterCategory(CLSID_BornoTextService, GUID_TFCAT_TIP_KEYBOARD, CLSID_BornoTextService);
         pCategoryMgr->Release();
     }
 
     ITfInputProcessorProfiles *pProfiles = nullptr;
     if (SUCCEEDED(CoCreateInstance(CLSID_TF_InputProcessorProfiles, nullptr, CLSCTX_INPROC_SERVER,
                                     IID_ITfInputProcessorProfiles, (void**)&pProfiles))) {
-        pProfiles->RemoveLanguageProfile(CLSID_AvroTextService, AVRO_LANGID, GUID_Profile_AvroPhonetic);
-        pProfiles->Unregister(CLSID_AvroTextService);
+        pProfiles->RemoveLanguageProfile(CLSID_BornoTextService, BORNO_LANGID, GUID_Profile_BornoNative);
+        pProfiles->Unregister(CLSID_BornoTextService);
         pProfiles->Release();
     }
 
@@ -102,4 +102,4 @@ HRESULT UnregisterServer() {
     return S_OK;
 }
 
-} // namespace AvroRegister
+} // namespace BornoRegister

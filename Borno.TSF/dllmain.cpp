@@ -15,7 +15,7 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppv) {
     if (!ppv) return E_INVALIDARG;
     *ppv = nullptr;
 
-    if (!IsEqualCLSID(rclsid, CLSID_AvroTextService))
+    if (!IsEqualCLSID(rclsid, CLSID_BornoTextService))
         return CLASS_E_CLASSNOTAVAILABLE;
 
     CClassFactory *pFactory = new (std::nothrow) CClassFactory();
@@ -31,9 +31,9 @@ STDAPI DllCanUnloadNow() {
 }
 
 STDAPI DllRegisterServer() {
-    return AvroRegister::RegisterServer();
+    return BornoRegister::RegisterServer();
 }
 
 STDAPI DllUnregisterServer() {
-    return AvroRegister::UnregisterServer();
+    return BornoRegister::UnregisterServer();
 }

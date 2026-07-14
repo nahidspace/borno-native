@@ -1,5 +1,5 @@
 #Requires -Version 5.1
-# Registers the Borno Native DLL as a Windows TSF text service by calling its
+# Registers BornoTSF.dll as a Windows TSF text service by calling its
 # DllRegisterServer export directly (rather than through regsvr32, which
 # swallows the real HRESULT/reason on failure behind a black-box exit code).
 # This writes to HKEY_CLASSES_ROOT (machine-wide COM registration), so it
@@ -9,7 +9,7 @@
 $ErrorActionPreference = "Stop"
 
 $config = if ($args.Count -gt 0) { $args[0] } else { "Debug" }
-$dllPath = Join-Path $PSScriptRoot "..\Avro.TSF\x64\$config\AvroTSF.dll"
+$dllPath = Join-Path $PSScriptRoot "..\Borno.TSF\x64\$config\BornoTSF.dll"
 if (-not (Test-Path $dllPath)) { throw "Not built yet: $dllPath. Run build.ps1 first." }
 $dll = (Resolve-Path $dllPath).Path
 
@@ -23,7 +23,7 @@ if (-not $isAdmin) {
 Add-Type -TypeDefinition @"
 using System;
 using System.Runtime.InteropServices;
-public static class AvroNative {
+public static class BornoNative {
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     public static extern IntPtr LoadLibrary(string path);
     [DllImport("kernel32.dll")]
@@ -36,18 +36,18 @@ public delegate int VoidToHResult();
 "@
 
 function Invoke-DllExport([string]$dllPath, [string]$exportName) {
-    $hModule = [AvroNative]::LoadLibrary($dllPath)
+    $hModule = [BornoNative]::LoadLibrary($dllPath)
     if ($hModule -eq [IntPtr]::Zero) {
         $err = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
         throw "LoadLibrary('$dllPath') failed, Win32 error $err"
     }
     try {
-        $procAddr = [AvroNative]::GetProcAddress($hModule, $exportName)
+        $procAddr = [BornoNative]::GetProcAddress($hModule, $exportName)
         if ($procAddr -eq [IntPtr]::Zero) { throw "GetProcAddress('$exportName') failed" }
         $delegate = [Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer($procAddr, [VoidToHResult])
         return $delegate.Invoke()
     } finally {
-        [AvroNative]::FreeLibrary($hModule) | Out-Null
+        [BornoNative]::FreeLibrary($hModule) | Out-Null
     }
 }
 

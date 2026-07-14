@@ -6,7 +6,7 @@
 #include <set>
 #include <utility>
 
-namespace AvroCore {
+namespace BornoCore {
 
 namespace {
 
@@ -286,7 +286,7 @@ std::vector<std::wstring> GetCandidates(const std::wstring& input) {
     // Rank and cap after all positions have been considered.
     std::stable_sort(out.begin(), out.end(),
         [](const std::wstring& a, const std::wstring& b) {
-            return AvroDictionary::Lookup(a) > AvroDictionary::Lookup(b);
+            return BornoDictionary::Lookup(a) > BornoDictionary::Lookup(b);
         });
     if (out.size() > 4) out.resize(4);
     return out;
@@ -331,7 +331,7 @@ std::vector<std::wstring> GetCandidates(const std::wstring& input) {
     // since our 25k-word dictionary is necessarily incomplete.
     std::stable_sort(out.begin(), out.end(),
         [](const std::wstring& a, const std::wstring& b) {
-            return AvroDictionary::Lookup(a) > AvroDictionary::Lookup(b);
+            return BornoDictionary::Lookup(a) > BornoDictionary::Lookup(b);
         });
 
     if (out.size() > kMaxCandidates) out.resize(kMaxCandidates);
@@ -340,4 +340,4 @@ std::vector<std::wstring> GetCandidates(const std::wstring& input) {
 #endif
 }
 
-} // namespace AvroCore
+} // namespace BornoCore

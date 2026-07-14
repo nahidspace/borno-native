@@ -10,9 +10,9 @@ Third-party materials:
   OmicronLab are credited references, not the product name or source of this
   project's implementation.
 
-* Avro.TSF/Resources/bn_wordfreq.tsv is derived from wordfreq's Bangla data
+* Borno.TSF/Resources/bn_wordfreq.tsv is derived from wordfreq's Bangla data
   and is available under CC BY-SA 4.0. See
-  Avro.TSF/Resources/ATTRIBUTION.md for attribution and share-alike terms.
+  Borno.TSF/Resources/ATTRIBUTION.md for attribution and share-alike terms.
 
 * tools/oracle contains development-only comparison materials and a local
   pyAvroPhonetic installation. Those materials are not part of the shipped
